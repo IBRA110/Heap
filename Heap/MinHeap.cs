@@ -1,8 +1,7 @@
 ﻿namespace Heap
 {
-    public class MinHeap : IMinHeap
+    public class MinHeap : List<Int32>, IMinHeap
     {
-        private List<int> _heap = new List<int> { };
         public void ChangePriority()
         {
             throw new NotImplementedException();
@@ -15,17 +14,34 @@
 
         public int GetMin()
         {
-            return _heap[0];
+            return this[0];
         }
 
         public void Insert(Int32 p) 
         {
-            _heap.Add(p);
+            this.Add(p);
+            SiftDown();
         }
 
-        public void Remove(int it)
+        public new void Remove(Int32 it)
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        private void SiftDown()
+        {
+            Int32 i = this.Count - 1;
+            while (this[i] < this[i / 2] && i / 2 >= 0 )
+            {
+                Int32 x = this[i];
+                this[i] = this[i / 2];
+                this[i / 2] = x;
+                i = i / 2;
+            }
+        }
+        private void SiftUp()
+        {
+            return;
         }
     }
 }
